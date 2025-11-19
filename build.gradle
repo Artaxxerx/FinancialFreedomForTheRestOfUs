@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.12.0'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testImplementation 'com.codeborne:selenide:7.9.4'
+    testImplementation 'io.qameta.allure:allure-junit5:2.30.0'
+    testImplementation 'io.qameta.allure:allure-selenide:2.30.0'
+    testRuntimeOnly 'org.slf4j:slf4j-simple:2.0.9'
+}
+
+test {
+    useJUnitPlatform()
+
+    // Настройки для Docker
+    systemProperties = [
+            'selenide.browser': 'chrome',
+            'selenide.headless': 'true',
+            'selenide.timeout': '15000',
+            'selenide.browserSize': '1920x1080',
+            'chromeoptions.args': '--no-sandbox,--disable-dev-shm-usage,--disable-gpu,--headless,--window-size=1920,1080',
+            'webdriver.chrome.driver': '/usr/bin/chromedriver',
+            'chrome.binary.path': '/usr/bin/chromium-browser'
+    ]
+
+    testLogging {
+        events "passed", "skipped", "failed", "standard_out", "standard_error"
+        showStandardStreams = true
+        showCauses = true
+        showExceptions = true
+        showStackTraces = true
+        exceptionFormat = "full"
+    }
+}
+
+allure {
+    version = '2.30.0'
+}

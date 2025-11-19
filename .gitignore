@@ -1,0 +1,20 @@
+# Build outputs
+build/
+.gradle/
+out/
+
+# IDE
+.idea/
+*.iml
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Allure reports
+allure-results/
+allure-report/
