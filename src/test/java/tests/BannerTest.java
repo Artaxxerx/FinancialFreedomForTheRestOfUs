@@ -8,7 +8,7 @@ public class BannerTest extends OpenBrowser {
 
     @Test
     public void theAppearanceOfTheIWantToReceiveMyCopyButtonTest() {
-        step("Checking That The Button 'I want to receive my copy' is presented", stepContext -> {
+        step("Checking that the button 'I want to receive my copy' is presented", stepContext -> {
             popUpWindow.verifyTheButtonIsPresent();
         });
     }
